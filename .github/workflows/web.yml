@@ -1,4 +1,3 @@
-# Создайте исправленный файл
 name: Netology AHJ
 
 on: [push, pull_request]
@@ -19,7 +18,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
