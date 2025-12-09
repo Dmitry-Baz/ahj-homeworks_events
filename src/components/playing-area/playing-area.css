@@ -1,0 +1,22 @@
+.playing-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 620px;
+  margin: 0 auto;
+  padding-left: 75px;
+  list-style-type: none;
+}
+
+.playing-area__item {
+  width: 20%;
+  height: 124px;
+  margin: 5px;
+  background-color: rgb(223, 136, 136);
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.playing-area__img {
+  width: 124px;
+  height: 124px;
+}
