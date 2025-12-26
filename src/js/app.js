@@ -1,10 +1,23 @@
-import PlayingArea from '../components/playing-area/playing-area';
-import userClick from '../components/user-click/user-click';
+import Game from './game/game';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const playingArea = new PlayingArea(document.querySelector('.playing-area'));
+  const container = document.querySelector('.playing-area');
 
-  const randomMovingGoblinTimerId = setInterval(playingArea.randomMovingGoblin, 1000);
+  const game = new Game({
+    container,
+    size: 4,           
+    maxMisses: 5,      
+    interval: 1000,    
+    onScoreUpdate: (score) => {
+      console.log('Очки:', score);
+    },
+    onMissUpdate: (misses) => {
+      console.log('Промахи:', misses);
+    },
+    onGameOver: (finalScore) => {
+      alert(`Игра окончена! Ваш счёт: ${finalScore}`);
+    },
+  });
 
-  userClick(randomMovingGoblinTimerId);
-})
+  game.start();
+});
