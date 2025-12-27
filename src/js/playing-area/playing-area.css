@@ -19,33 +19,3 @@
   width: 124px;
   height: 124px;
 }
-
-.game-over-modal {
-  text-align: center;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  margin: 20px auto;
-  max-width: 400px;
-}
-
-.game-over-modal h2 {
-  color: #d32f2f;
-  margin-top: 0;
-}
-
-.game-over-modal button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.game-over-modal button:hover {
-  background-color: #1565c0;
-}
