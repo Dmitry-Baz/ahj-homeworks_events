@@ -1,31 +1,50 @@
+import goblinImage from "../../img/goblin.png";
+
 export default class PlayingArea {
   constructor(container, size = 4) {
     this.container = container;
-    this.size = size; // например, 4x4 = 16 ячеек
+    this.size = size;
     this.totalCells = size * size;
     this.init();
   }
 
   init() {
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
     for (let i = 0; i < this.totalCells; i++) {
-      const item = document.createElement('li');
-      item.className = 'playing-area__item';
+      const item = document.createElement("li");
+      item.className = "playing-area__item";
       item.dataset.index = i;
-      this.container.appendChild(item);
+      this.container.append(item);
     }
   }
 
+  // Показываем гоблина в ячейке с указанным индексом
   showGoblin(index) {
-    this.hideAll();
+    this.hideAll(); // сначала удаляем старые изображения
     const cell = this.container.children[index];
-    if (cell) cell.classList.add('goblin');
+    if (!cell) return;
+
+    // Добавляем метку, что в ячейке гоблин
+    cell.classList.add("goblin");
+
+    // Создаём и вставляем изображение
+    const img = document.createElement("img");
+    img.src = goblinImage;
+    img.className = "playing-area__img";
+    img.alt = "Goblin";
+    cell.append(img);
   }
 
+  // Скрываем всех гоблинов (удаляем картинки и убираем класс)
   hideAll() {
-    this.container.querySelectorAll('.goblin').forEach(el => {
-      el.classList.remove('goblin');
-    });
+    // Удаляем ВСЕ изображения гоблинов из всех ячеек
+    const allGoblinImages =
+      this.container.querySelectorAll(".playing-area__img");
+    allGoblinImages.forEach((img) => img.remove());
+
+    // Также убираем класс .goblin со всех ячеек (на всякий случай)
+    const allCells = this.container.querySelectorAll("[data-index]");
+    allCells.forEach((cell) => cell.classList.remove("goblin"));
   }
 
   getCell(index) {

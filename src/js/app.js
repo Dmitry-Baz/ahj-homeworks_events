@@ -1,23 +1,31 @@
-import Game from './game/game';
+import Game from "./game/game";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.playing-area');
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".playing-area");
+  const maxMisses = 5;
 
   const game = new Game({
     container,
-    size: 4,           
-    maxMisses: 5,      
-    interval: 1000,    
+    size: 4,
+    maxMisses: maxMisses,
+    interval: 1000,
     onScoreUpdate: (score) => {
-      console.log('Очки:', score);
+      document.getElementById("scoreValue").textContent = score;
     },
     onMissUpdate: (misses) => {
-      console.log('Промахи:', misses);
+      document.getElementById("missesValue").textContent = misses;
     },
     onGameOver: (finalScore) => {
-      alert(`Игра окончена! Ваш счёт: ${finalScore}`);
+      document.getElementById("finalScore").textContent = finalScore;
+      document.getElementById("gameOverModal").style.display = "flex";
     },
   });
-
+  document.getElementById("maxMissesValue").textContent = maxMisses;
+  document.getElementById("maxMissesValue").textContent = 5;
+  document.getElementById("restartButton").addEventListener("click", () => {
+    document.getElementById("gameOverModal").style.display = "none";
+    game.scoreBoard.reset();
+    game.start();
+  });
   game.start();
 });

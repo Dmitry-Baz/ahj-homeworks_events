@@ -1,5 +1,5 @@
-import PlayingArea from '../playing-area/playing-area';
-import ScoreBoard from '../score-board/score-board';
+import PlayingArea from "../playing-area/playing-area";
+import ScoreBoard from "../score-board/score-board";
 
 export default class Game {
   constructor({
@@ -22,11 +22,9 @@ export default class Game {
 
     this.lastIndex = -1;
 
-    
     this.handleCellClick = this.handleCellClick.bind(this);
 
-    
-    this.playingArea.container.addEventListener('click', this.handleCellClick);
+    this.playingArea.container.addEventListener("click", this.handleCellClick);
 
     this.scoreBoard.onGameOver = () => {
       this.stop();
@@ -49,7 +47,12 @@ export default class Game {
     this.intervalId = setInterval(() => {
       this.playingArea.showGoblin(this.getRandomIndex());
       setTimeout(() => {
-        if (!this.playingArea.container.querySelector(`[data-index="${this.lastIndex}"].goblin`)) return;
+        if (
+          !this.playingArea.container.querySelector(
+            `[data-index="${this.lastIndex}"].goblin`,
+          )
+        )
+          return;
         this.scoreBoard.miss();
         this.onMissUpdate(this.scoreBoard.misses);
       }, this.interval - 50);
@@ -62,17 +65,20 @@ export default class Game {
       this.intervalId = null;
     }
     this.playingArea.hideAll();
-    this.playingArea.container.removeEventListener('click', this.handleCellClick);
+    this.playingArea.container.removeEventListener(
+      "click",
+      this.handleCellClick,
+    );
   }
 
   handleCellClick(e) {
-    const cell = e.target.closest('[data-index]');
+    const cell = e.target.closest("[data-index]");
     if (!cell) return;
 
     const index = Number(cell.dataset.index);
 
-    if (cell.classList.contains('goblin')) {
-      cell.classList.remove('goblin');
+    if (cell.classList.contains("goblin")) {
+      cell.classList.remove("goblin");
       this.scoreBoard.hit();
       this.onScoreUpdate(this.scoreBoard.score);
     }
