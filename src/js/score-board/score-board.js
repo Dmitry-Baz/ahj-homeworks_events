@@ -3,7 +3,7 @@ export default class ScoreBoard {
     this.score = 0;
     this.misses = 0;
     this.maxMisses = maxMisses;
-    this.onGameOver = null; // callback
+    this.onGameOver = null; 
   }
 
   hit() {
