@@ -75,7 +75,7 @@ export default class Game {
     const cell = e.target.closest("[data-index]");
     if (!cell) return;
 
-    const index = Number(cell.dataset.index);
+    // const index = Number(cell.dataset.index);
 
     if (cell.classList.contains("goblin")) {
       cell.classList.remove("goblin");
