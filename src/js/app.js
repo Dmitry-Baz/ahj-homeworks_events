@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("restartButton").addEventListener("click", () => {
     document.getElementById("gameOverModal").style.display = "none";
     game.scoreBoard.reset();
+    document.getElementById("scoreValue").textContent = 0;
+    document.getElementById("missesValue").textContent = 0;
     game.start();
   });
   game.start();

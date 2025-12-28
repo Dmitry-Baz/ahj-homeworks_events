@@ -43,6 +43,7 @@ export default class Game {
   }
 
   start() {
+    this.playingArea.container.addEventListener("click", this.handleCellClick);
     if (this.intervalId) clearInterval(this.intervalId);
     this.intervalId = setInterval(() => {
       this.playingArea.showGoblin(this.getRandomIndex());
